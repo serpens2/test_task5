@@ -4,7 +4,7 @@ services:
   web:
     build: .
     container_name: quotes_app
-    command: python quotes_of_the_day/manage.py runserver 0.0.0.0:8000
+    command: python quotes_of_the_day/manage.py runserver 0.0.0.0:8000 --insecure
     volumes:
       - db_data:/app/quotes_of_the_day/df.sqlite3
     ports:
