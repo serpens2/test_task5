@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавить цитату</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+<body>
+<h1 class="text-center">Добавить цитату</h1>
+<div class="d-flex flex-column align-items-center">
+    <div class="card border-0 col-md-8 col-lg-6">
+        <div class="card-body">
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.non_field_errors }}
+                <div class="form-group">
+                    <div class="mb-3">
+                        <label>Текст цитаты</label>
+                        {{ form.text }}
+                        {% for error in form.text.errors %}
+                            <p style="color:red"> {{ error }} </p>
+                        {% endfor %}
+                    </div>
+                    <div class="mb-3">
+                        <label>Источник</label>
+                        {{ form.source }}
+                        {% for error in form.source.errors %}
+                            <p style="color:red"> {{ error }} </p>
+                        {% endfor %}
+                    </div>
+                    <div class="mb-3">
+                        <label>Вес цитаты</label>
+                        {{ form.weight }}
+                        {% for error in form.weight.errors %}
+                            <p style="color:red"> {{ error }} </p>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <button type="submit" class="btn btn-primary">Добавить</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<br>
+<br>
+<button type="button" class="btn btn-outline-info ms-3" onclick="location.href=' {% url 'quote' %} '">Назад</button>
+</body>
+</html>
